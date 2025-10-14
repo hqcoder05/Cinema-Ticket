@@ -1,0 +1,62 @@
+mv .gitignores .gitignore 2>/dev/null || true
+
+cat > .gitignore <<'EOF'
+# OS / Editor
+.DS_Store
+Thumbs.db
+
+# Rider / IntelliJ
+.idea/
+*.iml
+
+# VS / VS Code
+.vs/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+
+# .NET build
+bin/
+obj/
+**/bin/
+**/obj/
+out/
+[Bb]uild/
+[Aa]rtifacts/
+
+# Logs
+logs/
+*.log
+
+# Env & secrets
+.env
+.env.*         # e.g. .env.dev/.env.prod
+!.env.example
+secrets.json
+UserSecrets/
+appsettings.*.local.json
+
+# Certificates
+*.pfx
+*.p12
+*.snk
+certs/
+!certs/.gitkeep
+
+# Docker
+docker-compose.override.yml
+.docker/
+pgdata/
+postgres-data/
+
+# Frontend (nếu có)
+node_modules/
+dist/
+build/
+coverage/
+*.tsbuildinfo
+
+# Rider caches
+*.sln.dotSettings.user
+EOF
+

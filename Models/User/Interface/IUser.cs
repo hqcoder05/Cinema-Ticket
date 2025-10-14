@@ -1,13 +1,15 @@
 ﻿namespace Cinema_ticket.Models.User.Interface
+
+
 {
     public interface IUser
     {
-        string FullName { get; }
+        string Uid { get; }
         string Email { get; }
+        string DisplayName { get; }
         UserRole Role { get; }
 
         void ViewProfile();
-        void UpdateProfile(string fullName, string email);
-        void DisplayName();
+        public void UpdateProfile(string FirstName, string LastName, string? email, string? phone);
     }
 }

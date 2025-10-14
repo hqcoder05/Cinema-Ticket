@@ -2,7 +2,9 @@
 {
     public interface IAdmin : IUser
     {
-        void ManageUsers();
-        void ManageMovies();
+        void AddMovie(string title, int duration, decimal price);
+        void RemoveMovie(int movieId);
+        void ManageUserRoles(string userId, string newRole);
+        void ViewAllBookings();
     }
 }
