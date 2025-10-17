@@ -1,0 +1,85 @@
+@{
+    ViewData["Title"] = "Đăng Ký";
+}
+
+<div class="container" style="margin-top: 40px; margin-bottom: 60px;">
+    <div style="max-width: 500px; margin: 0 auto;">
+        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 40px 30px; border-radius: 15px 15px 0 0; text-align: center;">
+            <h1 style="font-size: 32px; font-weight: bold; margin-bottom: 10px;">Đăng Ký Tài Khoản</h1>
+            <p style="opacity: 0.9;">Tạo tài khoản để bắt đầu đặt vé</p>
+        </div>
+
+        <div style="background: white; padding: 40px 30px; border-radius: 0 0 15px 15px; box-shadow: 0 8px 24px rgba(0,0,0,0.1);">
+            @if (!ViewData.ModelState.IsValid)
+            {
+                <div style="background: #ffebee; color: #c62828; padding: 15px; border-radius: 8px; margin-bottom: 20px; border-left: 4px solid #c62828;">
+                    @foreach (var error in ViewData.ModelState.Values)
+                    {
+                        @foreach (var msg in error.Errors)
+                        {
+                            <p style="margin: 5px 0; font-size: 13px;">⚠️ @msg.ErrorMessage</p>
+                        }
+                    }
+                </div>
+            }
+
+            <form method="post" action="/Account/Register">
+                <!-- Họ và Tên -->
+                <div style="margin-bottom: 18px;">
+                    <label style="display: block; font-weight: bold; color: #333; margin-bottom: 8px;">Họ và Tên *</label>
+                    <input type="text" name="fullName" required placeholder="Nhập họ và tên" 
+                           style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 14px; box-sizing: border-box;">
+                </div>
+
+                <!-- Email -->
+                <div style="margin-bottom: 18px;">
+                    <label style="display: block; font-weight: bold; color: #333; margin-bottom: 8px;">Email *</label>
+                    <input type="email" name="email" required placeholder="Nhập email" 
+                           style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 14px; box-sizing: border-box;">
+                </div>
+
+                <!-- Mật Khẩu -->
+                <div style="margin-bottom: 18px;">
+                    <label style="display: block; font-weight: bold; color: #333; margin-bottom: 8px;">Mật Khẩu *</label>
+                    <input type="password" name="password" required placeholder="Tối thiểu 8 ký tự" 
+                           style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 14px; box-sizing: border-box;">
+                    <p style="font-size: 12px; color: #999; margin-top: 5px;">
+                        ✓ Chứa ít nhất 1 chữ hoa, 1 chữ số, 1 ký tự đặc biệt
+                    </p>
+                </div>
+
+                <!-- Xác Nhận Mật Khẩu -->
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; font-weight: bold; color: #333; margin-bottom: 8px;">Xác Nhận Mật Khẩu *</label>
+                    <input type="password" name="confirmPassword" required placeholder="Nhập lại mật khẩu" 
+                           style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 14px; box-sizing: border-box;">
+                </div>
+
+                <!-- Điều Khoản -->
+                <div style="margin-bottom: 25px;">
+                    <label style="display: flex; align-items: flex-start; gap: 10px; cursor: pointer;">
+                        <input type="checkbox" required style="width: 18px; height: 18px; cursor: pointer; margin-top: 2px;">
+                        <span style="color: #666; font-size: 13px;">
+                            Tôi đồng ý với <a href="#" style="color: #667eea; text-decoration: none; font-weight: bold;">Điều Khoản Sử Dụng</a> 
+                            và <a href="#" style="color: #667eea; text-decoration: none; font-weight: bold;">Chính Sách Bảo Mật</a>
+                        </span>
+                    </label>
+                </div>
+
+                <!-- Nút Đăng Ký -->
+                <button type="submit" style="width: 100%; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; padding: 14px; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer; transition: all 0.3s; margin-bottom: 15px;"
+                        onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">
+                    Đăng Ký
+                </button>
+            </form>
+
+            <!-- Đăng Nhập -->
+            <div style="text-align: center; padding-top: 15px; border-top: 1px solid #eee;">
+                <p style="color: #666; font-size: 14px; margin-bottom: 10px;">Đã có tài khoản?</p>
+                <a href="/Account/Login" style="color: #667eea; text-decoration: none; font-weight: bold; font-size: 15px;">
+                    Đăng nhập ngay
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

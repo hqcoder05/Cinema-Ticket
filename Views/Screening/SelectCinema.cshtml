@@ -1,0 +1,59 @@
+@model List<Cinema_ticket.Models.Cinema.Cinema>
+
+@{
+    ViewData["Title"] = "Chọn Rạp Chiếu";
+}
+
+<div class="container" style="margin-top: 30px; margin-bottom: 40px;">
+    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 40px 20px; border-radius: 10px; margin-bottom: 40px; text-align: center;">
+        <h1 style="font-size: 36px; font-weight: bold; margin-bottom: 10px;">Chọn Rạp Chiếu</h1>
+        <p style="font-size: 16px; opacity: 0.9;">Phim: <strong>@ViewBag.MovieTitle</strong></p>
+    </div>
+
+    @if (Model != null && Model.Count > 0)
+    {
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 30px;">
+            @foreach (var cinema in Model)
+            {
+                <div style="background: white; padding: 25px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: all 0.3s ease; cursor: pointer;" 
+                     onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 8px 20px rgba(0,0,0,0.2)'" 
+                     onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.1)'">
+                    
+                    <h3 style="font-size: 20px; font-weight: bold; color: #333; margin-bottom: 15px;">🎬 @cinema.Name</h3>
+                    
+                    <div style="margin-bottom: 20px; padding-bottom: 20px; border-bottom: 2px solid #eee;">
+                        <div style="display: flex; gap: 10px; margin-bottom: 10px; align-items: start;">
+                            <span style="color: #667eea; font-weight: bold; min-width: 80px;">📍 Địa Chỉ:</span>
+                            <span style="color: #666;">@cinema.Address</span>
+                        </div>
+                        
+                        <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+                            <span style="color: #667eea; font-weight: bold; min-width: 80px;">🏙️ Thành Phố:</span>
+                            <span style="color: #666;">@cinema.City</span>
+                        </div>
+                        
+                        <div style="display: flex; gap: 10px;">
+                            <span style="color: #667eea; font-weight: bold; min-width: 80px;">📞 Điện Thoại:</span>
+                            <span style="color: #666;">@cinema.Phone</span>
+                        </div>
+                    </div>
+                    
+                    <a href="/Screening/SelectDateTime?movieId=@ViewBag.MovieId&cinemaId=@cinema.Id" 
+                       style="display: block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-align: center; padding: 14px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 16px; transition: all 0.3s;"
+                       onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">
+                        Xem Lịch Chiếu →
+                    </a>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div style="text-align: center; padding: 60px 20px; background: #f5f5f5; border-radius: 10px;">
+            <p style="font-size: 18px; color: #666; margin-bottom: 20px;">🎬 Chưa có rạp nào có lịch chiếu cho phim này</p>
+            <a href="/Movie/Details/@ViewBag.MovieId" style="display: inline-block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: bold;">
+                ← Quay Lại Chi Tiết Phim
+            </a>
+        </div>
+    }
+</div>

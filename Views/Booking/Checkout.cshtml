@@ -1,0 +1,132 @@
+@model Cinema_ticket.Models.Movie.Screening
+
+@{
+    ViewData["Title"] = "Xác Nhận & Thanh Toán";
+}
+
+<div class="container" style="margin-top: 30px; margin-bottom: 40px;">
+    <h1 style="font-size: 36px; font-weight: bold; color: #333; margin-bottom: 30px; text-align: center;">Xác Nhận Đơn Hàng & Thanh Toán</h1>
+
+    <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 30px;">
+        <!-- Form Thanh Toán -->
+        <div style="background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+            <h2 style="font-size: 22px; font-weight: bold; color: #333; margin-bottom: 25px;">Thông Tin Khách Hàng</h2>
+
+            <form method="post" action="/Booking/ProcessPayment">
+                <input type="hidden" name="screeningId" value="@Model.Id">
+                <input type="hidden" name="seats" value="@ViewBag.SelectedSeats">
+
+                <!-- Họ Tên -->
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; font-weight: bold; color: #333; margin-bottom: 8px;">Họ và Tên *</label>
+                    <input type="text" name="fullName" required placeholder="Nhập họ và tên" 
+                           style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px; font-size: 14px; box-sizing: border-box;">
+                </div>
+
+                <!-- Email -->
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; font-weight: bold; color: #333; margin-bottom: 8px;">Email *</label>
+                    <input type="email" name="email" required placeholder="Nhập email" 
+                           style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px; font-size: 14px; box-sizing: border-box;">
+                </div>
+
+                <!-- Điện Thoại -->
+                <div style="margin-bottom: 25px;">
+                    <label style="display: block; font-weight: bold; color: #333; margin-bottom: 8px;">Số Điện Thoại *</label>
+                    <input type="tel" name="phone" required placeholder="Nhập số điện thoại" 
+                           style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px; font-size: 14px; box-sizing: border-box;">
+                </div>
+
+                <div style="background: #f5f5f5; padding: 20px; border-radius: 10px; margin-bottom: 25px;">
+                    <h3 style="font-size: 16px; font-weight: bold; color: #333; margin-bottom: 15px;">Phương Thức Thanh Toán</h3>
+                    
+                    <div style="display: flex; gap: 15px; flex-direction: column;">
+                        <label style="display: flex; align-items: center; gap: 10px; cursor: pointer; padding: 12px; background: white; border-radius: 5px; border: 2px solid #ddd;">
+                            <input type="radio" name="paymentMethod" value="card" checked style="width: 18px; height: 18px; cursor: pointer;">
+                            <span style="font-weight: bold; color: #333;">💳 Thẻ Tín Dụng / Ghi Nợ</span>
+                        </label>
+                        
+                        <label style="display: flex; align-items: center; gap: 10px; cursor: pointer; padding: 12px; background: white; border-radius: 5px; border: 2px solid #ddd;">
+                            <input type="radio" name="paymentMethod" value="bank" style="width: 18px; height: 18px; cursor: pointer;">
+                            <span style="font-weight: bold; color: #333;">🏦 Chuyển Khoản Ngân Hàng</span>
+                        </label>
+
+                        <label style="display: flex; align-items: center; gap: 10px; cursor: pointer; padding: 12px; background: white; border-radius: 5px; border: 2px solid #ddd;">
+                            <input type="radio" name="paymentMethod" value="wallet" style="width: 18px; height: 18px; cursor: pointer;">
+                            <span style="font-weight: bold; color: #333;">📱 Ví Điện Tử</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Checkbox Điều Khoản -->
+                <div style="margin-bottom: 25px;">
+                    <label style="display: flex; align-items: flex-start; gap: 10px; cursor: pointer;">
+                        <input type="checkbox" required style="width: 18px; height: 18px; cursor: pointer; margin-top: 2px;">
+                        <span style="color: #666; font-size: 13px;">
+                            Tôi đồng ý với <strong>Điều Khoản Sử Dụng</strong> và <strong>Chính Sách Bảo Mật</strong>
+                        </span>
+                    </label>
+                </div>
+
+                <button type="submit" style="width: 100%; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; padding: 16px; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer; transition: all 0.3s;"
+                        onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">
+                    🔒 Thanh Toán Ngay (@Model.Price * @ViewBag.SeatCount)
+                </button>
+            </form>
+        </div>
+
+        <!-- Tóm Tắt Đơn Hàng -->
+        <div style="background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); padding: 30px; border-radius: 10px; height: fit-content;">
+            <h2 style="font-size: 22px; font-weight: bold; color: #333; margin-bottom: 25px;">Tóm Tắt Đơn Hàng</h2>
+
+            <div style="background: white; padding: 20px; border-radius: 10px; margin-bottom: 20px;">
+                <h3 style="font-size: 14px; font-weight: bold; color: #999; margin-bottom: 10px;">PHIM</h3>
+                <p style="font-size: 16px; font-weight: bold; color: #333; line-height: 1.4;">@Model.Movie?.Title</p>
+            </div>
+
+            <div style="background: white; padding: 20px; border-radius: 10px; margin-bottom: 20px;">
+                <h3 style="font-size: 14px; font-weight: bold; color: #999; margin-bottom: 10px;">RẠP & PHÒNG</h3>
+                <p style="font-size: 15px; color: #333; margin-bottom: 8px;">
+                    <strong>@Model.Screen?.Cinema?.Name</strong>
+                </p>
+                <p style="font-size: 14px; color: #666; margin-bottom: 8px;">
+                    Phòng: @Model.Screen?.ScreenName
+                </p>
+                <p style="font-size: 14px; color: #666;">
+                    @Model.Screen?.Cinema?.Address
+                </p>
+            </div>
+
+            <div style="background: white; padding: 20px; border-radius: 10px; margin-bottom: 20px;">
+                <h3 style="font-size: 14px; font-weight: bold; color: #999; margin-bottom: 10px;">NGÀY GIỜ CHIẾU</h3>
+                <p style="font-size: 16px; font-weight: bold; color: #667eea;">
+                    @Model.ScreeningDateTime.ToString("HH:mm")
+                </p>
+                <p style="font-size: 14px; color: #666;">
+                    @Model.ScreeningDateTime.ToString("dddd, dd/MM/yyyy")
+                </p>
+            </div>
+
+            <div style="background: white; padding: 20px; border-radius: 10px; margin-bottom: 20px;">
+                <h3 style="font-size: 14px; font-weight: bold; color: #999; margin-bottom: 10px;">GHẾ NGỒI</h3>
+                <p style="font-size: 16px; font-weight: bold; color: #333;">@ViewBag.SelectedSeats</p>
+            </div>
+
+            <div style="background: white; padding: 20px; border-radius: 10px; margin-bottom: 20px; border-top: 3px solid #667eea;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                    <span style="color: #666;">Giá vé:</span>
+                    <span style="font-weight: bold; color: #333;">@Model.Price.ToString("C") × @ViewBag.SeatCount</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; padding-top: 10px; border-top: 1px solid #eee;">
+                    <span style="font-weight: bold; color: #333;">Tổng Cộng:</span>
+                    <span style="font-size: 20px; font-weight: bold; color: #ff6b6b;">@((Model.Price * ViewBag.SeatCount).ToString("C"))</span>
+                </div>
+            </div>
+
+            <a href="/Screening/SelectSeats/@Model.Id" style="display: block; text-align: center; background: white; color: #333; border: 1px solid #ddd; padding: 12px; border-radius: 8px; text-decoration: none; font-weight: bold; cursor: pointer; transition: all 0.3s;"
+               onmouseover="this.style.background='#f5f5f5'" onmouseout="this.style.background='white'">
+                ← Chọn Lại Ghế
+            </a>
+        </div>
+    </div>
+</div>

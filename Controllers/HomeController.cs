@@ -15,7 +15,7 @@ namespace Cinema_ticket.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return RedirectToAction("Index", "Movie");
         }
 
         public IActionResult Privacy()

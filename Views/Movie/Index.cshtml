@@ -1,0 +1,111 @@
+@model List<Cinema_ticket.Models.Movie.Movie>
+
+@{
+    ViewData["Title"] = "Trang Chủ";
+}
+
+<div class="hero-section" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 60px 20px; text-align: center; margin-bottom: 40px;">
+    <h1 style="font-size: 48px; margin-bottom: 20px; font-weight: bold;">Đặt Vé Xem Phim Online</h1>
+    <p style="font-size: 18px; margin-bottom: 30px;">Tìm và đặt vé xem những bộ phim hay nhất</p>
+    
+    <div class="search-box" style="max-width: 500px; margin: 0 auto;">
+        <form method="get" action="/Movie/List" style="display: flex; gap: 10px;">
+            <input type="text" name="searchTerm" placeholder="Tìm phim..." 
+                   style="flex: 1; padding: 12px; border: none; border-radius: 5px; font-size: 16px;">
+            <button type="submit" style="padding: 12px 30px; background-color: #ff6b6b; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">
+                Tìm Kiếm
+            </button>
+        </form>
+    </div>
+</div>
+
+<div class="container" style="margin-bottom: 40px;">
+    <h2 style="margin-bottom: 30px; font-size: 32px; font-weight: bold; color: #333;">Phim Đang Chiếu</h2>
+    
+    @if (Model != null && Model.Count > 0)
+    {
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 30px;">
+            @foreach (var movie in Model.Where(m => m.IsNowShowing).Take(12))
+            {
+                <div class="movie-card" style="background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.3s; cursor: pointer;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                    <div style="position: relative; height: 350px; background: #ccc;">
+                        @if (!string.IsNullOrEmpty(movie.PosterUrl))
+                        {
+                            <img src="@movie.PosterUrl" alt="@movie.Title" style="width: 100%; height: 100%; object-fit: cover;">
+                        }
+                        else
+                        {
+                            <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: #eee;">
+                                <span style="color: #999;">Không có ảnh</span>
+                            </div>
+                        }
+                        <div style="position: absolute; top: 10px; right: 10px; background: #ff6b6b; color: white; padding: 8px 12px; border-radius: 5px; font-weight: bold;">
+                            ⭐ @movie.Rating
+                        </div>
+                    </div>
+                    
+                    <div style="padding: 20px;">
+                        <h3 style="font-size: 18px; font-weight: bold; margin-bottom: 10px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">@movie.Title</h3>
+                        <p style="color: #666; font-size: 14px; margin-bottom: 10px;">@movie.Genre</p>
+                        <p style="color: #999; font-size: 13px; margin-bottom: 15px;">Thời lượng: @movie.Duration phút</p>
+                        
+                        <a href="/Movie/Details/@movie.Id" 
+                           style="display: block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-align: center; padding: 12px; border-radius: 5px; text-decoration: none; font-weight: bold; transition: opacity 0.3s;"
+                           onmouseover="this.style.opacity='0.9'"
+                           onmouseout="this.style.opacity='1'">
+                            Xem Chi Tiết & Đặt Vé
+                        </a>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div style="text-align: center; padding: 40px; background: #f5f5f5; border-radius: 10px;">
+            <p style="font-size: 18px; color: #666;">Hiện chưa có phim nào đang chiếu</p>
+        </div>
+    }
+</div>
+
+<div class="container" style="margin-bottom: 40px;">
+    <h2 style="margin-bottom: 30px; font-size: 32px; font-weight: bold; color: #333;">Phim Sắp Chiếu</h2>
+    
+    @if (Model != null && Model.Any(m => m.IsComingSoon))
+    {
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 30px;">
+            @foreach (var movie in Model.Where(m => m.IsComingSoon).Take(12))
+            {
+                <div class="movie-card" style="background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.1); position: relative;">
+                    <div style="position: relative; height: 350px; background: #ccc;">
+                        @if (!string.IsNullOrEmpty(movie.PosterUrl))
+                        {
+                            <img src="@movie.PosterUrl" alt="@movie.Title" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.6;">
+                        }
+                        else
+                        {
+                            <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: #eee; opacity: 0.6;">
+                                <span style="color: #999;">Không có ảnh</span>
+                            </div>
+                        }
+                        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(0,0,0,0.8); color: #ffd700; padding: 15px 30px; border-radius: 10px; text-align: center; font-weight: bold; font-size: 18px;">
+                            SẮP CHIẾU
+                        </div>
+                    </div>
+                    
+                    <div style="padding: 20px;">
+                        <h3 style="font-size: 18px; font-weight: bold; margin-bottom: 10px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">@movie.Title</h3>
+                        <p style="color: #666; font-size: 14px; margin-bottom: 10px;">@movie.Genre</p>
+                        <p style="color: #ffd700; font-size: 13px; font-weight: bold;">Ngày chiếu: @movie.ReleaseDate</p>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div style="text-align: center; padding: 40px; background: #f5f5f5; border-radius: 10px;">
+            <p style="font-size: 18px; color: #666;">Hiện chưa có phim sắp chiếu</p>
+        </div>
+    }
+</div>

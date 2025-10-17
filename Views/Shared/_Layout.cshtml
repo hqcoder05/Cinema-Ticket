@@ -10,22 +10,25 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Cinema_ticket</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
+        <nav style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); box-shadow: 0 4px 6px rgba(0,0,0,0.1); padding: 0;">
+            <div style="max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; height: 70px;">
+                <a href="/Movie/Index" style="font-size: 28px; font-weight: bold; color: white; text-decoration: none; display: flex; align-items: center; gap: 10px;">
+                    🎬 Cinema Ticket
+                </a>
+                
+                <div style="display: flex; gap: 30px; align-items: center;">
+                    <a href="/Movie/Index" style="color: white; text-decoration: none; font-weight: bold; transition: opacity 0.3s;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">
+                        Trang Chủ
+                    </a>
+                    <a href="/Movie/List" style="color: white; text-decoration: none; font-weight: bold; transition: opacity 0.3s;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">
+                        Danh Sách Phim
+                    </a>
+                    <a href="/Home/Privacy" style="color: white; text-decoration: none; font-weight: bold; transition: opacity 0.3s;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">
+                        Hỗ Trợ
+                    </a>
+                    <a href="#" style="color: white; text-decoration: none; font-weight: bold; background: rgba(255,255,255,0.2); padding: 8px 16px; border-radius: 5px; transition: all 0.3s;" onmouseover="this.style.background='rgba(255,255,255,0.3)'" onmouseout="this.style.background='rgba(255,255,255,0.2)'">
+                        👤 Tài Khoản
+                    </a>
                 </div>
             </div>
         </nav>
