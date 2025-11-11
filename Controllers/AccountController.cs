@@ -1,9 +1,12 @@
 using System;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
+using Cinema_ticket.Data;
 using Cinema_ticket.Models;
-using Cinema_ticket.Models.User;
+using Cinema_ticket.Models.Booking;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace Cinema_ticket.Controllers
@@ -11,10 +14,12 @@ namespace Cinema_ticket.Controllers
     public class AccountController : Controller
     {
         private readonly ILogger<AccountController> _logger;
+        private readonly CinemaContext _context;
 
-        public AccountController(ILogger<AccountController> logger)
+        public AccountController(ILogger<AccountController> logger, CinemaContext context)
         {
             _logger = logger;
+            _context = context;
         }
 
         // F2: Đăng Nhập
@@ -135,10 +140,44 @@ namespace Cinema_ticket.Controllers
         }
 
         // F9: Lịch Sử Vé
-        public IActionResult BookingHistory()
+        public async Task<IActionResult> BookingHistory()
         {
-            // TODO: Lấy lịch sử vé của user từ database
-            return View();
+            try
+            {
+                // TODO: Lấy email user từ session/token thực tế
+                // Tạm thời dùng email mẫu để demo
+                var userEmail = "user@example.com"; // Thay bằng logic lấy email thực tế
+
+                var bookings = await _context.Tickets
+                    .Include(t => t.Screening)
+                    .ThenInclude(s => s.Movie)
+                    .Include(t => t.Screening)
+                    .ThenInclude(s => s.Screen)
+                    .ThenInclude(sc => sc.Cinema)
+                    .Include(t => t.TicketDetails)
+                    .Where(t => t.CustomerEmail == userEmail)
+                    .OrderByDescending(t => t.CreatedAt)
+                    .Select(t => new BookingHistoryViewModel
+                    {
+                        Id = t.Id,
+                        MovieTitle = t.Screening.Movie.Title,
+                        ScreeningDateTime = t.Screening.ScreeningDateTime,
+                        CinemaName = t.Screening.Screen.Cinema.Name,
+                        ScreenName = t.Screening.Screen.ScreenName,
+                        SeatLabels = string.Join(", ", t.TicketDetails.Select(td => td.SeatLabel).OrderBy(s => s)),
+                        TotalPrice = t.TotalPrice,
+                        Status = t.Status,
+                        CreatedAt = t.CreatedAt
+                    })
+                    .ToListAsync();
+
+                return View(bookings);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error loading booking history");
+                return View(new List<BookingHistoryViewModel>());
+            }
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
