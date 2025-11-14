@@ -1,0 +1,136 @@
+/* Login & Register Form Styles - Simple Version */
+.login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+  padding: 20px;
+  background-color: #f5f5f5;
+}
+
+.login-form {
+  background: white;
+  border-radius: 8px;
+  padding: 30px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  border: 1px solid #ddd;
+}
+
+.login-form span {
+  display: block;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 25px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.login-form input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: #fff;
+  box-sizing: border-box;
+}
+
+.login-form input:focus {
+  outline: none;
+  border-color: #e50914;
+}
+
+.login-form input::placeholder {
+  color: #999;
+}
+
+.login-form button {
+  width: 100%;
+  padding: 12px;
+  background-color: #e50914;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.login-form button:hover {
+  background-color: #c30711;
+}
+
+.login-form button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.login-form p {
+  text-align: center;
+  margin-top: 20px;
+  color: #666;
+  font-size: 14px;
+}
+
+.login-form p a {
+  color: #e50914;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.login-form p a:hover {
+  text-decoration: underline;
+}
+
+/* Error & Success Messages */
+.error,
+.success {
+  padding: 12px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.error {
+  background-color: #ffebee;
+  color: #c62828;
+  border: 1px solid #ef5350;
+}
+
+.success {
+  background-color: #e8f5e8;
+  color: #2e7d32;
+  border: 1px solid #66bb6a;
+}
+
+.social-login {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.social-login p {
+  font-size: 14px;
+  color: #999;
+  margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .login-form,
+  .register-form {
+    padding: 20px;
+    margin: 10px;
+  }
+
+  .login-form span,
+  .register-form span {
+    font-size: 20px;
+  }
+}
