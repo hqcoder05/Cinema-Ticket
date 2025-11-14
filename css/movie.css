@@ -1,0 +1,382 @@
+.movies-container {
+  padding: 30px;
+  background-color: #000;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.movies-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.movie-card {
+  background-color: #1a1a1a;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  position: relative;
+}
+
+.movie-card:hover {
+  transform: translateY(-5px);
+}
+
+.movie-poster {
+  position: relative;
+  overflow: hidden;
+}
+
+.movie-poster img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+}
+
+.movie-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.movie-card:hover .movie-overlay {
+  opacity: 1;
+}
+
+.btn-detail,
+.btn-book {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.btn-detail {
+  background-color: #666;
+  color: white;
+}
+
+.btn-book {
+  background-color: #e50914;
+  color: white;
+}
+
+.btn-detail:hover,
+.btn-book:hover {
+  transform: scale(1.05);
+}
+
+.movie-info {
+  padding: 18px;
+  color: white;
+}
+
+.movie-info h3 {
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+
+.movie-info p {
+  margin: 5px 0;
+  color: #ccc;
+}
+
+.genre {
+  color: #e50914 !important;
+  font-weight: bold;
+}
+
+.rating {
+  color: #ffd700 !important;
+}
+
+/* Modal styles - Cải thiện để nổi bật hơn */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 10000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.9),
+    rgba(20, 20, 20, 0.95)
+  );
+  backdrop-filter: blur(10px);
+  animation: modalBackdropFadeIn 0.4s ease;
+}
+
+.modal-content {
+  background: linear-gradient(145deg, #1a1a1a, #2a2a2a);
+  margin: 2% auto;
+  padding: 30px;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 1000px;
+  color: white;
+  position: relative;
+  border: 3px solid #e71a0f;
+  box-shadow: 0 20px 60px rgba(231, 26, 15, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  animation: modalSlideIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  overflow: hidden;
+}
+
+.modal-content::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #e71a0f, #ff4444, #e71a0f);
+  animation: modalGlow 2s ease-in-out infinite alternate;
+}
+
+.close {
+  color: #aaa;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  position: absolute;
+  right: 25px;
+  top: 25px;
+  transition: all 0.3s ease;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.3);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.close:hover {
+  color: #fff;
+  background: linear-gradient(135deg, #e71a0f, #ff4444);
+  transform: scale(1.15) rotate(90deg);
+  box-shadow: 0 5px 15px rgba(231, 26, 15, 0.5);
+}
+
+.movie-detail {
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+  margin-top: 20px;
+}
+
+.movie-detail img {
+  border-radius: 15px;
+  max-width: 250px;
+  height: auto;
+  border: 3px solid rgba(231, 26, 15, 0.5);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.movie-detail img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8), 0 0 20px rgba(231, 26, 15, 0.3);
+}
+
+.movie-info-detail {
+  flex: 1;
+  padding: 10px 0;
+}
+
+.movie-info-detail h2 {
+  color: #e71a0f;
+  margin-bottom: 25px;
+  font-size: 32px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 10px rgba(231, 26, 15, 0.3);
+  background: linear-gradient(45deg, #e71a0f, #ff4444);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.movie-info-detail p {
+  margin: 15px 0;
+  line-height: 1.8;
+  font-size: 17px;
+  color: #e0e0e0;
+}
+
+.movie-info-detail p strong {
+  color: #fff;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.movie-info-detail .btn-book {
+  background: linear-gradient(45deg, #e71a0f, #ff4444);
+  color: white;
+  border: none;
+  padding: 15px 40px;
+  border-radius: 30px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-top: 20px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(231, 26, 15, 0.3);
+}
+
+.movie-info-detail .btn-book::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: left 0.6s ease;
+}
+
+.movie-info-detail .btn-book:hover::before {
+  left: 100%;
+}
+
+.movie-info-detail .btn-book:hover {
+  background: linear-gradient(45deg, #ff4444, #e71a0f);
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 12px 30px rgba(231, 26, 15, 0.6),
+    0 0 20px rgba(231, 26, 15, 0.4);
+}
+
+/* Responsive cho movies grid */
+@media (max-width: 1200px) {
+  .movies-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+  }
+}
+
+@media (max-width: 900px) {
+  .movies-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .movies-container {
+    padding: 20px;
+  }
+
+  .movie-detail {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .movie-detail img {
+    max-width: 150px;
+    margin: 0 auto;
+  }
+}
+
+/* Animation keyframes - Cải thiện hiệu ứng */
+@keyframes modalBackdropFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.7) translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes modalGlow {
+  from {
+    opacity: 0.5;
+    box-shadow: 0 0 5px rgba(231, 26, 15, 0.5);
+  }
+  to {
+    opacity: 1;
+    box-shadow: 0 0 20px rgba(231, 26, 15, 0.8);
+  }
+}
+
+@media (max-width: 600px) {
+  .movies-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .movies-container {
+    padding: 15px;
+  }
+
+  .modal-content {
+    width: 95%;
+    padding: 20px;
+    margin: 5% auto;
+  }
+
+  .movie-detail {
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+  }
+
+  .movie-detail img {
+    max-width: 200px;
+    margin: 0 auto;
+  }
+
+  .movie-info-detail h2 {
+    font-size: 24px;
+  }
+
+  .movie-info-detail p {
+    font-size: 15px;
+  }
+
+  .close {
+    right: 15px;
+    top: 15px;
+    width: 35px;
+    height: 35px;
+    font-size: 18px;
+  }
+
+  .btn-detail,
+  .btn-book {
+    padding: 12px 20px;
+    font-size: 16px;
+  }
+}
