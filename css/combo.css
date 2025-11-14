@@ -1,0 +1,127 @@
+.combo-container {
+  padding: 40px 20px 60px 20px;
+  background-color: #f5f5f5;
+  color: #222;
+  min-height: calc(100vh - 120px);
+}
+
+.combo-card {
+  background: #fff;
+  color: #222;
+  border-radius: 18px;
+  padding: 20px 16px 16px 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.10);
+  transition: box-shadow 0.2s, transform 0.2s;
+  border: none;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 320px;
+  max-width: 370px;
+  margin: 0 auto;
+}
+
+.combo-card:hover {
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+}
+
+.combo-card img {
+  width: 100%;
+  max-width: 220px;
+  height: 160px;
+  object-fit: contain;
+  background: #f5f5f5;
+  border-radius: 10px;
+  margin-bottom: 14px;
+  display: block;
+}
+
+.combo-card input[type="number"] {
+  width: 60px;
+  text-align: center;
+  margin-top: 8px;
+}
+
+.combo-actions {
+  text-align: center;
+  margin: 40px 0 0 0;
+  width: 100%;
+}
+
+.combo-actions button {
+  display: inline-block;
+  margin: 0 10px;
+}
+
+.input-group {
+  margin: 8px auto 0 auto;
+}
+
+.input-group button {
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.input-group button:hover {
+  background-color: #c82333;
+}
+
+.input-group input[type="number"] {
+  width: 50px;
+  padding: 4px;
+  text-align: center;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.card-title {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+.price {
+  font-size: 1.1rem;
+  color: #e53935;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+.btn-lg {
+  font-size: 1.2rem;
+  padding: 0.75rem 2.5rem;
+  border-radius: 8px;
+  min-width: 140px;
+}
+.btn-primary {
+  background: #e53935;
+  border: none;
+}
+.btn-primary:hover {
+  background: #b71c1c;
+}
+.btn-outline-secondary {
+  border: 2px solid #bdbdbd;
+  color: #333;
+  background: #fff;
+}
+.btn-outline-secondary:hover {
+  background: #f5f5f5;
+  color: #111;
+}
+
+.combo-title {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 32px;
+  margin-top: 24px;
+  color: #d32f2f;
+  letter-spacing: 0.5px;
+}

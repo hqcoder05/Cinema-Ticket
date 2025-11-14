@@ -1,0 +1,54 @@
+/* --- Checkout css --- */
+.checkout-container {
+  max-width: 500px;
+  margin: 40px auto 0 auto;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+  padding: 32px 28px 24px 28px;
+  text-align: center;
+}
+.checkout-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 18px;
+}
+.checkout-icon {
+  font-size: 2.5rem;
+  margin-bottom: 8px;
+}
+.checkout-box {
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 18px 16px;
+  margin-bottom: 18px;
+  box-shadow: 0 2px 8px rgba(229,9,20,0.04);
+  text-align: left;
+}
+.checkout-box h4 {
+  margin-bottom: 12px;
+  color: #e53935;
+  font-weight: bold;
+}
+.checkout-total {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #1976d2;
+  text-align: right;
+}
+.checkout-total span {
+  color: #e53935;
+  font-size: 1.3rem;
+}
+.checkout-actions {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  margin-top: 18px;
+}
+.btn-lg {
+  font-size: 1.1rem;
+  padding: 0.7rem 2.2rem;
+  border-radius: 8px;
+}

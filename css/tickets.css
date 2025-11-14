@@ -1,0 +1,346 @@
+.booking-container {
+  padding: 20px;
+  background-color: #000;
+  color: white;
+}
+
+.showtimes-selection {
+  display: grid;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.showtime-option {
+  background-color: #1a1a1a;
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #333;
+}
+
+.showtime-option:hover {
+  border-color: #e50914;
+}
+
+.showtime-info h3 {
+  color: #e50914;
+  margin-bottom: 10px;
+}
+
+.showtime-info p {
+  margin: 5px 0;
+  color: #ccc;
+}
+
+.btn-select-showtime {
+  background-color: #e50914;
+  color: white;
+  border: none;
+  padding: 15px 25px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.btn-select-showtime:hover {
+  background-color: #cc0812;
+  transform: scale(1.05);
+}
+
+.movie-booking-info {
+  display: flex;
+  background-color: #1a1a1a;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 30px;
+  align-items: center;
+}
+
+.movie-booking-info img {
+  width: 120px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-right: 20px;
+}
+
+.booking-details h3 {
+  color: #e50914;
+  margin-bottom: 15px;
+  font-size: 24px;
+}
+
+.booking-details p {
+  margin: 8px 0;
+  color: #ccc;
+}
+
+.seat-selection {
+  margin: 30px 0;
+}
+
+.screen {
+  background: linear-gradient(90deg, #333, #666, #333);
+  color: white;
+  text-align: center;
+  padding: 10px;
+  margin-bottom: 30px;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.seats-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.seat-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.row-label {
+  width: 30px;
+  text-align: center;
+  color: #fff;
+  font-weight: bold;
+}
+
+.seat {
+  width: 35px;
+  height: 35px;
+  border: 2px solid #444;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.seat.available.standard {
+  background-color: #2a2a2a;
+  color: #fff;
+}
+
+.seat.available.vip {
+  background-color: #ffd700;
+  color: #000;
+}
+
+.seat.selected {
+  background-color: #e50914 !important;
+  color: white;
+  border-color: #e50914;
+}
+
+.seat.booked {
+  background-color: #666;
+  color: #999;
+  cursor: not-allowed;
+}
+
+.seat:hover:not(.booked):not(.selected) {
+  transform: scale(1.1);
+  border-color: #e50914;
+}
+
+.seat-legend {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #ccc;
+}
+
+.legend-item .seat {
+  width: 20px;
+  height: 20px;
+  font-size: 10px;
+  cursor: default;
+}
+
+.booking-summary {
+  background-color: #1a1a1a;
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 30px;
+}
+
+.summary-content p {
+  margin: 10px 0;
+  font-size: 16px;
+}
+
+.summary-content span {
+  color: #e50914;
+  font-weight: bold;
+}
+
+.btn-book-tickets {
+  width: 100%;
+  background-color: #666;
+  color: white;
+  border: none;
+  padding: 15px;
+  border-radius: 5px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: all 0.3s ease;
+}
+
+.btn-book-tickets:not(:disabled):hover {
+  background-color: #cc0812 !important;
+  transform: scale(1.02);
+}
+
+.btn-book-tickets:disabled {
+  cursor: not-allowed;
+}
+
+.btn-back {
+  background-color: #e50914;
+  color: white;
+  text-decoration: none;
+  padding: 15px 30px;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.btn-back:hover {
+  background-color: #cc0812;
+  transform: scale(1.05);
+  text-decoration: none;
+  color: white;
+}
+
+/* Responsive cho mobile */
+@media (max-width: 768px) {
+  .movie-booking-info {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .movie-booking-info img {
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+
+  .seat {
+    width: 30px;
+    height: 30px;
+    font-size: 10px;
+  }
+
+  .seat-legend {
+    justify-content: space-around;
+  }
+
+  .showtime-option {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+}
+
+/* Theater showtimes display */
+.theater-showtimes {
+  margin-top: 20px;
+}
+
+.movie-showtimes-block {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(231, 26, 15, 0.3);
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.movie-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid rgba(231, 26, 15, 0.3);
+}
+
+.movie-poster-small {
+  width: 60px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 5px;
+  margin-right: 15px;
+}
+
+.movie-title h3 {
+  color: #e71a0f;
+  margin: 0 0 5px 0;
+  font-size: 18px;
+}
+
+.theater-info {
+  color: #ccc;
+  margin: 0;
+  font-size: 14px;
+}
+
+.showtimes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 15px;
+}
+
+.showtime-card {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(231, 26, 15, 0.2);
+  border-radius: 6px;
+  padding: 15px;
+  transition: all 0.3s ease;
+}
+
+.showtime-card:hover {
+  border-color: rgba(231, 26, 15, 0.6);
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.showtime-info {
+  margin-bottom: 15px;
+}
+
+.showtime-info p {
+  color: #ddd;
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+/* Responsive for theater showtimes */
+@media (max-width: 768px) {
+  .movie-header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .movie-poster-small {
+    margin: 0 0 10px 0;
+  }
+
+  .showtimes-grid {
+    grid-template-columns: 1fr;
+  }
+}
